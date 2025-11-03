@@ -41,12 +41,17 @@ Expected: Avg accuracy drop <10% across tasks (vs. 40% baseline).
 
 Architecture
 -regularizer.py: Heat kernel Φ(R)\Phi(R)\Phi(R)
- and Hutchinson trace Tr⁡(H)≈1m∑vi⊤(Hvi)\operatorname{Tr}(H) \approx \frac{1}{m} \sum v_i^\top (H v_i)\operatorname{Tr}(H) \approx \frac{1}{m} \sum v_i^\top (H v_i)
+ and Hutchinson trace Tr⁡(H)≈1m∑vi⊤(Hvi)
+
+
 
 -continual_trainer.py: Incremental training with total loss Ltotal=Ltask+λ1Φ(R)+λ2R2\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{task}} + \lambda_1 \Phi(R) + \lambda_2 R^2\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{task}} + \lambda_1 \Phi(R) + \lambda_2 R^2
 .
 
-BenchmarksTask
+
+
+Benchmarks
+Task
 Baseline Forgetting
 ESMSEU Forgetting
 Reduction
