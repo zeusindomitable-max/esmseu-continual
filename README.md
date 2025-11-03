@@ -5,7 +5,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Paper](https://arxiv.org/abs/XXXX.XXXXX)](https://arxiv.org/abs/XXXX.XXXXX)  <!-- Ganti dengan arXiv ID makalahmu -->
 
-**ESMSEU-Continual** implements the heat kernel regularization and stochastic trace estimator from the ESMSEU framework [Juhariah et al., 2025](https://arxiv.org/abs/XXXX.XXXXX) to mitigate catastrophic forgetting in continual learning. By diffusing curvature in the loss landscape via geometric smoothing (analogous to quantum diffusion), it achieves ~35% reduction in forgetting without replay buffers or distillation—scalable to LLMs and agents.
+**ESMSEU-Continual** 
+implements the heat kernel regularization and stochastic trace estimator from the ESMSEU framework [Juhariah et al., 2025](https://arxiv.org/abs/XXXX.XXXXX) to mitigate catastrophic forgetting in continual learning. By diffusing curvature in the loss landscape via geometric smoothing (analogous to quantum diffusion), it achieves ~35% reduction in forgetting without replay buffers or distillation—scalable to LLMs and agents.
 
 ## Why ESMSEU?
 - **Theoretical Foundation**: Derived from stochastic action \( S_{\text{ESMSEU}} = \int_M (\mathcal{R} + \alpha g^{\mu\nu} \nabla_\mu \phi \nabla_\nu \phi + \beta R^2 + \gamma \Phi(R)) \, dV \), bridging differential geometry and ML optimization.
@@ -36,10 +37,13 @@ trainer = ESMSEUContinualTrainer(model, tasks, lambda1=0.1, lambda2=0.01)
 results = trainer.train(epochs=5)
 print("Avg Forgetting Reduction:", results['forgetting_reduction'])
 ```
-Expected: Avg accuracy drop <10% across tasks (vs. 40% baseline).Architectureregularizer.py: Heat kernel Φ(R)\Phi(R)\Phi(R)
+Expected: Avg accuracy drop <10% across tasks (vs. 40% baseline).
+
+Architecture
+-regularizer.py: Heat kernel Φ(R)\Phi(R)\Phi(R)
  and Hutchinson trace Tr⁡(H)≈1m∑vi⊤(Hvi)\operatorname{Tr}(H) \approx \frac{1}{m} \sum v_i^\top (H v_i)\operatorname{Tr}(H) \approx \frac{1}{m} \sum v_i^\top (H v_i)
-.
-continual_trainer.py: Incremental training with total loss Ltotal=Ltask+λ1Φ(R)+λ2R2\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{task}} + \lambda_1 \Phi(R) + \lambda_2 R^2\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{task}} + \lambda_1 \Phi(R) + \lambda_2 R^2
+
+-continual_trainer.py: Incremental training with total loss Ltotal=Ltask+λ1Φ(R)+λ2R2\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{task}} + \lambda_1 \Phi(R) + \lambda_2 R^2\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{task}} + \lambda_1 \Phi(R) + \lambda_2 R^2
 .
 
 BenchmarksTask
